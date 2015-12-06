@@ -20,10 +20,12 @@
           = render 'devise/menu/login_items'
 
     .container
-      %p.notice= notice
-      %p.alert= alert
+      - if notice
+        %p.alert.alert-success= notice
+      - if alert
+        %p.alert.alert-danger= alert
       = yield
-      %footer
-        .container
-          Offset © 2015 -
-          = Time.now.year
+    %footer
+      .container
+        Offset © 2015 -
+        = Time.now.year

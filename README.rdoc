@@ -95,6 +95,21 @@ GET: /collection/:collection_id?page=:page;tag=:tag
 
 
 
+=== Example OAuth client code
+
+callback = "http://localhost:3001/auth/todo/callback" 
+app_id = "fd8ecd805e8a772a20302db1191c58a853c5ba7318773ebbf2a76d47af0a6ef1" 
+secret = "340adfb3af545b2444f5532056910f1373b74990d3a3686f5456b3fa43bad923" 
+client = OAuth2::Client.new(app_id, secret, site: "http://localhost:3100/") 
+
+auth_code = "6a5efd644e4604ec6a8201ba93ebf952036eb1e8769fc218ec882eb5a789aec5"  
+access = client.auth_code.get_token(auth_code, redirect_uri: callback) 
+
+access.get("/api/tasks").parsed 
+access.post("/api/tasks", params: {task: {name: "test oauth"}}) 
+access.get("/api/user").parsed 
+
+
 == Installation
 
 * Ruby version

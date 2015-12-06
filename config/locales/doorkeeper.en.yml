@@ -36,7 +36,7 @@ en:
         title: 'Your applications'
         new: 'New Application'
         name: 'Name'
-        callback_url: 'Callback URL'
+        callback_url: 'Callback URLs'
       new:
         title: 'New Application'
       show:

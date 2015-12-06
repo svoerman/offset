@@ -17,6 +17,9 @@
             %span.icon-bar
           %a.navbar-brand{ href: '#' } Offset
         .collapse.navbar-collapse#mainnav
+          %ul.nav.navbar-nav
+            %li
+              %a{ href: oauth_applications_path } Applications
           = render 'devise/menu/login_items'
 
     .container
@@ -29,3 +32,4 @@
       .container
         Offset © 2015 -
         = Time.now.year
+    = console

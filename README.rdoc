@@ -12,6 +12,8 @@ cd /home/vagrant/offset; bundle install; rake db:create; rake db:migrate
 And run the server:
 cd /home/vagrant/offset; rails s
 
+Access the site:
+http://localhost:3100
 
 
 

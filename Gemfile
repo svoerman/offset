@@ -28,6 +28,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Authentication
 gem 'devise', '~> 3.5.2'
 
+# Design
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

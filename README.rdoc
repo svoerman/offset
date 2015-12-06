@@ -16,19 +16,70 @@ Access the site:
 http://localhost:3100
 
 
-
-
 == README
 
+Offset is an image management tool that can be used from other web apps
+and has the following functionality that you don't need to replicate:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Manage images
+* Serve images
+* Resize images
+* Add a name and tags to an image
+* Select an image from the collection
 
-Things you may want to cover:
+Authentication from external apps works through OAuth2. An account can
+define multiple roles that can have the following rights:
+
+* Upload an image (tags pre-defined)
+* Upload an image and create/choose tags
+* Browse the image gallery and select an image
+* Delete an image
+
+Each role has its own OAuth2 account to access the app.
+
+An account can create multiple collections. For each collection the
+sizes that offset should resize to can be defined.
+
+
+
+=== Workflow
+
+External app redirects the user to Offset and sends the following variables:
+* Role
+* Tags
+* Collection
+
+After offset is finished dealing with the user, it returns:
+* the id of the image
+* the url for the requested thumbnail size
+
+
+=== Models
+
+- User
+  - Accounts
+    - Collections
+      - Default image sizes
+      - Images
+      - Tags
+
+
+=== S3 / Fog
+
+The app uses Fog for storage settings. Among others, it can use S3.
+
+
+
+== Installation
+
+Get the application up and running:
 
 * Ruby version
+Developed and tested on Ruby 2.2.3
 
 * System dependencies
+Imagemagick
+Open CV (for Face recognition)
 
 * Configuration
 

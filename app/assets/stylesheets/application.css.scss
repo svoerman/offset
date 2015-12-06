@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+body {
+  padding-top: 100px;
+}
+
+footer {
+  margin-top: 100px;
+}
+
+table, td, th { 
+  vertical-align: middle;
+  border: none;
+}
+
+th {
+  border-bottom: 1px solid #DDD;
+}
+
+.navbar-right.navbar-text {
+  margin-right: 10px;
+}

@@ -7,20 +7,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top{ role: 'navigation' }
-      .container-fluid
-        .navbar-header
-          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{ href: '#' } Offset
-        .collapse.navbar-collapse#mainnav
-          %ul.nav.navbar-nav
-            %li
-              %a{ href: oauth_applications_path } Applications
-          = render 'devise/menu/login_items'
+    = render 'shared/menu'
 
     .container
       - if notice

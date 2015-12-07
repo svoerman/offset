@@ -112,6 +112,35 @@ access.expired?
 access = access.refresh!
 
 
+
+
+
+=== Posting an image
+
+callback = "http://localhost:3001/" 
+app_id = "f36f225a996987c9093c4f810096f66b3066eb1932c52a0f28d6ae41e876adc8" 
+secret = "a9629093466afb505682956a920c5235ad731c4c2bb8722f2b433174a37e412f" 
+
+client = OAuth2::Client.new(app_id, secret,
+  :site => "http://localhost:3100/") do |b|
+  b.request  :multipart
+  b.request  :url_encoded
+  b.adapter  :net_http
+end
+
+auth_code = "65b24d88c2737e93110b6e52b4cda5eb6e983c1fc339fbcca443498cc1210fad"  
+access = client.auth_code.get_token(auth_code, redirect_uri: callback) 
+
+begin
+  img = Faraday::UploadIO.new('pic2.jpg', 'image/jpg')
+  data = {image: {name: "this is a tile", attachment: img}}
+  response = access.post('api/v1/collections/1/images/', :body => data)
+  print response.body, response.status
+rescue OAuth2::Error => e
+  puts e
+end
+
+
 == Installation
 
 * Ruby version

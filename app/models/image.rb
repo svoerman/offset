@@ -5,8 +5,10 @@ class Image < ActiveRecord::Base
                     styles: Proc.new { |attachment| attachment.instance.styles },
                     default_url: "/images/:style/missing.png"
 
-  validates_attachment_content_type :attachment, content_type: /\Aimage\/.*\Z/
-  validates :collection, :presence => true
+  validates :collection, presence: true
+  validates :attachment,
+            attachment_size: { less_than: 20.megabytes },
+            attachment_content_type: { content_type: /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, message: 'file type is not allowed (only jpeg/png/gif images)' }
 
   def styles
     return {} if @dynamic_style_format.blank?

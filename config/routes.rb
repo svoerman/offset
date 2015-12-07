@@ -6,7 +6,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :collections
+      resources :collections do
+        resources :images do
+          member do
+            get 'thumbnail'
+          end
+        end
+      end
     end
   end
 

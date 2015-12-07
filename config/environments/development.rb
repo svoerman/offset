@@ -42,4 +42,6 @@ Rails.application.configure do
   # URL for devise
   config.action_mailer.default_url_options = { host: '0.0.0.0', port: 3100 }
   config.web_console.whitelisted_ips = '10.0.2.2'
+
+  Paperclip.options[:command_path] = "/usr/bin/"
 end

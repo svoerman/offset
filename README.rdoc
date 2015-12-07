@@ -9,7 +9,7 @@ Then log in and create the databases:
 
 vagrant ssh
 
-cd /home/vagrant/offset; bundle install; rake db:create; rake db:migrate
+cd /home/vagrant/offset; bundle install; rake db:create; rake db:migrate; rake db:seed
 
 
 And run the server:

@@ -60,11 +60,10 @@ After offset is finished dealing with the user, it returns:
 === Models
 
 - User
-  - Accounts
-    - Collections
-      - Default image sizes
-      - Images
-      - Tags
+  - Collections
+    - Default image sizes
+    - Images
+    - Tags
 
 
 === S3 / Fog
@@ -108,6 +107,9 @@ auth_code = "6a5efd644e4604ec6a8201ba93ebf952036eb1e8769fc218ec882eb5a789aec5"
 access = client.auth_code.get_token(auth_code, redirect_uri: callback) 
 
 access.get("/api/v1/collections").parsed 
+
+access.expired?
+access = access.refresh!
 
 
 == Installation

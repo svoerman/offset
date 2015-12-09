@@ -1,10 +1,9 @@
 class Api::V1::ImagesController < Api::V1::ApiController
-  before_filter :load_collection
-  before_filter :load_image, only: :thumbnail
+  before_action :load_collection
+  before_action :load_image, only: :thumbnail
   skip_before_action :verify_authenticity_token
 
   def index
-    # current_resource_owner.collections
     render json: { images: @collection.images, user: current_resource_owner }
   end
 
@@ -25,7 +24,7 @@ class Api::V1::ImagesController < Api::V1::ApiController
   private
 
   def image_params
-    params.require(:image).permit(:name, :attachment, :author_name, :author_email)
+    params.require(:image).permit(:name, :attachment, :author_name, :author_email, :description)
   end
 
   def load_image

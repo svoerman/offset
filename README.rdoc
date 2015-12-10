@@ -132,7 +132,7 @@ auth_code = "65b24d88c2737e93110b6e52b4cda5eb6e983c1fc339fbcca443498cc1210fad"
 access = client.auth_code.get_token(auth_code, redirect_uri: callback) 
 
 begin
-  img = Faraday::UploadIO.new('pic2.jpg', 'image/jpg')
+  img = Faraday::UploadIO.new('pic.jpg', 'image/jpg')
   data = {image: {name: "this is a tile", attachment: img}}
   response = access.post('api/v1/collections/1/images/', :body => data)
   print response.body, response.status
@@ -140,6 +140,10 @@ rescue OAuth2::Error => e
   puts e
 end
 
+img = Faraday::UploadIO.new('pic.jpg', 'image/jpg'); data = {image: {name: "this is a tile", attachment: img}}; response = access.post('api/v1/collections/1/images/', :body => data)
+
+
+access.get("/api/v1/collections/1/images/5/thumbnail?width=500&height=500").parsed['url']
 
 == Installation
 

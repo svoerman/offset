@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207121609) do
+ActiveRecord::Schema.define(version: 20151210084341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "collections", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
-    t.integer  "user_id",                 null: false
+    t.string   "name",          default: "", null: false
+    t.integer  "user_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "default_sizes", default: "", null: false
   end
 
   add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree

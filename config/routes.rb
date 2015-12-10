@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         resources :images do
           member do
             get 'thumbnail'
+            get 'original'
           end
         end
       end

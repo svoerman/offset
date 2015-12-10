@@ -1,6 +1,6 @@
 class Api::V1::ImagesController < Api::V1::ApiController
   before_action :load_collection
-  before_action :load_image, only: :thumbnail
+  before_action :load_image, only: [:thumbnail, :original]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -19,6 +19,10 @@ class Api::V1::ImagesController < Api::V1::ApiController
   def thumbnail
     style = "#{params['width']}x#{params['height']}>"
     render json: { url: @image.dynamic_attachment_url(style), height: style }
+  end
+
+  def original
+    render json: { url: @image.attachment.url(:original) }
   end
 
   private

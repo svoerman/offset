@@ -5,4 +5,8 @@ class Collection < ActiveRecord::Base
   def default_sizes_ar
     default_sizes.split(',')
   end
+
+  def use_face_recognition
+    false
+  end
 end

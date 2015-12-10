@@ -70,6 +70,7 @@ Vagrant.configure(2) do |config|
     sudo -u postgres psql -c "grant all on tablespace pg_default to vagrant"
     sudo -u postgres psql -c "ALTER USER vagrant CREATEDB"
     ln -s /vagrant /home/vagrant/offset
+    sudo ln /dev/null /dev/raw1394
   SHELL
   
   config.vbguest.auto_update = false

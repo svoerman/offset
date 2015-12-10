@@ -34,7 +34,9 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
 # Images
-gem "paperclip", "~> 4.3"
+gem 'paperclip', '~> 4.3'
+gem 'ruby-opencv'
+gem 'paperclip-facecrop'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

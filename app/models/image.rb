@@ -4,6 +4,7 @@ class Image < ActiveRecord::Base
 
   has_attached_file :attachment,
                     styles: Proc.new { |attachment| attachment.instance.styles },
+                    processors: Proc.new { |img| img.processors(img.collection) },
                     default_url: "/images/:style/missing.png",
                     url: "/system/images/:id_partition/:hash.:extension",
                     hash_secret: "61e7c2ef3422a13eba8bdc7fd94e99f12c12de163be8fbac85e649388abaf76d"
@@ -15,6 +16,10 @@ class Image < ActiveRecord::Base
                       content_type: /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/,
                       message: 'file type is not allowed (only jpeg/png/gif images)'
                     }
+
+  def processors(collection)
+    collection.use_face_recognition ? [:face_crop] : [:thumbnail]
+  end
 
   def styles
     return {} if @dynamic_style_format.blank?

@@ -117,9 +117,9 @@ access = access.refresh!
 
 === Posting an image
 
-callback = "http://localhost:3001/" 
-app_id = "f36f225a996987c9093c4f810096f66b3066eb1932c52a0f28d6ae41e876adc8" 
-secret = "a9629093466afb505682956a920c5235ad731c4c2bb8722f2b433174a37e412f" 
+callback = "http://localhost:3000/" 
+app_id = "4e90205be3584f6fddf106a673203efce55f6538f6ad9a407795219fbdd63bc7" 
+secret = "968384c18411c1f04c5e5633a0f92b0e1424b95947103c05fef98477ec1191b1" 
 
 client = OAuth2::Client.new(app_id, secret,
   :site => "http://localhost:3100/") do |b|
@@ -128,7 +128,7 @@ client = OAuth2::Client.new(app_id, secret,
   b.adapter  :net_http
 end
 
-auth_code = "65b24d88c2737e93110b6e52b4cda5eb6e983c1fc339fbcca443498cc1210fad"  
+auth_code = "0cd0fd1e7e71805a2313a427048cdbee82b1274efa2b2d05ae25552ee0788ef8"  
 access = client.auth_code.get_token(auth_code, redirect_uri: callback) 
 
 begin

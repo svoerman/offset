@@ -4,12 +4,17 @@ class Image < ActiveRecord::Base
 
   has_attached_file :attachment,
                     styles: Proc.new { |attachment| attachment.instance.styles },
-                    default_url: "/images/:style/missing.png"
+                    default_url: "/images/:style/missing.png",
+                    url: "/system/images/:id_partition/:hash.:extension",
+                    hash_secret: "61e7c2ef3422a13eba8bdc7fd94e99f12c12de163be8fbac85e649388abaf76d"
 
-  validates :collection, presence: true
-  validates :attachment,
-            attachment_size: { less_than: 20.megabytes },
-            attachment_content_type: { content_type: /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, message: 'file type is not allowed (only jpeg/png/gif images)' }
+  validates         :collection, presence: true
+  validates         :attachment,
+                    attachment_size: { less_than: 20.megabytes },
+                    attachment_content_type: {
+                      content_type: /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/,
+                      message: 'file type is not allowed (only jpeg/png/gif images)'
+                    }
 
   def styles
     return {} if @dynamic_style_format.blank?
@@ -35,4 +40,3 @@ class Image < ActiveRecord::Base
     collection.default_sizes_ar.map { |s| dynamic_attachment_url(s) }
   end
 end
-
